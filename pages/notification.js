@@ -29,7 +29,8 @@ export default class notification extends Component {
         }
     }
 
-    serverNotifications = () => {
+
+    configurePushSubscription = () => {
 
         this.setState({ loading: true });
         console.log("you are inside the web notification subscription code !!");
@@ -38,13 +39,16 @@ export default class notification extends Component {
         }
 
         let swRef;
+
         navigator.serviceWorker.ready.then(sw => {
             swRef = sw;
             return swRef.pushManager.getSubscription(); // this allow to get the subscripition 
+
         }).then(sub => {
             if (sub === null) {
                 // create a new subscription 
                 console.log("we dont have the subcription")
+
                 return swRef.pushManager.subscribe({
                     userVisibleOnly: true,
                     applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
@@ -56,9 +60,36 @@ export default class notification extends Component {
                 console.log("we have the subcription", sub);
                 return sub;
             }
-        }).catch(er => {
-            console.log("err is there in registration", er);
-        })
+        }).then(function (newSub) {
+
+            // here you have to store this newsbu i.e. your subscription user to database
+            // with the help of newSub Request payload // you get the endpoing and keys {p256dh , auth}
+            // which is used to send the notification to the user 
+            console.log("this is subsciriton body", newSub);
+
+            let urlDb = "https://pwa-serv-notify.herokuapp.com/api/pwa/subscribe";
+            return fetch(urlDb, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(newSub)
+            })
+        }).then(function (res) {
+            if (res.ok) {
+                console.log("new subscriber is added to DB ", res);
+                this.setState({ loading: false });
+
+                let subBtn = document.getElementById("sub-notification");
+                subBtn.style.display = "none";
+            }
+        }).catch(function (err) {
+            this.setState({ loading: false });
+
+            console.log("server : App subscriber error ", err);
+        });
+
     }
 
 
@@ -71,7 +102,7 @@ export default class notification extends Component {
                     {this.state.isLoading && <h3>Loading...</h3>}
 
                     <h6>Start Notification from server </h6>
-                    <button onClick={() => this.serverNotifications()} >Start Server Notification</button>
+                    <button onClick={() => this.configurePushSubscription()} >Start Server Notification</button>
                 </Container>
             </div>
         )
