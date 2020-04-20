@@ -10,6 +10,7 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    const port = process.env.PORT || 3000;
     const showRoutes = require("./routes/index.js");
 
     server.use("/api", showRoutes(server));
@@ -18,9 +19,9 @@ app
       return handle(req, res);
     });
 
-    server.listen(3000, err => {
+    server.listen(port, err => {
       if (err) throw err;
-      console.log(`> Ready on 3000`);
+      console.log(`> Ready on ${port}`);
     });
   })
   .catch(ex => {
