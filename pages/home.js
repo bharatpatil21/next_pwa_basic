@@ -12,10 +12,11 @@ export default ({todos}) => (
 );
 
 export async function getServerSideProps(){
-    const resp =  await fetch('http://localhost:3000/api/todos');
+    const resp =  await fetch(`https://floating-plains-13859.herokuapp.com/api/todos`);
 
     const todos = await resp.json();
 
+    
     console.log('[TODOS]',todos); 
 
     return {
