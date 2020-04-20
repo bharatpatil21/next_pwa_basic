@@ -12,7 +12,13 @@ module.exports = withMDX(withPWA({
     disable: false,
     dest: "public",
     register: true
-  }
+  },
+  // exportPathMap:function(){
+  //   return {
+  //     '/':'/home'
+  //   }
+  // }
+  // useFileSystemPublicRoutes: false,
 }))
 
 
