@@ -14,7 +14,7 @@ export default ({todos}) => (
 );
 
 export async function getServerSideProps(){
-    const resp =  await fetch(`${LOCALHOST}/api/todos`);
+    const resp =  await fetch(`${APP_URL}/api/todos`);
 
     const todos = await resp.json();
 
