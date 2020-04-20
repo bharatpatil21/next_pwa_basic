@@ -5,8 +5,8 @@
   "main": "home.js",
   "scripts": {
     "dev": "node server/index.js",
-    "build": "next build",
-    "start": "next start -p $PORT && node server/index.js",
+    "build": "next build  && node server/index.js",
+    "start": "next start -p $PORT",
     "deploy": "next build && next export"
   },
   "keywords": [],
