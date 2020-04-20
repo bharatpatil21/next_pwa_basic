@@ -10,7 +10,6 @@ app
   .prepare()
   .then(() => {
     const server = express();
-    const port = process.env.PORT || 3000;
     const showRoutes = require("./routes/index.js");
 
     server.use("/api", showRoutes(server));
