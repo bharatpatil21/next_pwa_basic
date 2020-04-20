@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\index.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\list.js"],{
 
 /***/ "./components/Container.tsx":
 /*!**********************************!*\
@@ -987,6 +987,18 @@ function _interopRequireDefault(obj) {
 }
 
 module.exports = _interopRequireDefault;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
 
 /***/ }),
 
@@ -36764,6 +36776,35 @@ var withWidth = function withWidth() {
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/icons/Check.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@material-ui/icons/Check.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
+  d: "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+}), 'Check');
+
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/icons/Home.js":
 /*!*************************************************!*\
   !*** ./node_modules/@material-ui/icons/Home.js ***!
@@ -45929,6 +45970,18 @@ var e,t=(e=__webpack_require__(/*! querystring */ "./node_modules/querystring-es
 
 /***/ }),
 
+/***/ "./node_modules/next/dist/build/polyfills/fetch/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/next/dist/build/polyfills/fetch/index.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* globals self */var fetch=self.fetch.bind(self);module.exports=fetch;module.exports.default=module.exports;
+
+/***/ }),
+
 /***/ "./node_modules/next/dist/build/polyfills/object-assign.js":
 /*!***********************************************************************************************************************!*\
   !*** delegated ./node_modules/next/dist/build/polyfills/object-assign.js from dll-reference dll_2adc2403d89adc16ead0 ***!
@@ -45952,21 +46005,21 @@ var assign=Object.assign.bind(Object);function g(){return assign;}Object.defineP
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cindex.tsx!./":
-/*!********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cindex.tsx ***!
-  \********************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Flist&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Clist.tsx!./":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Flist&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Clist.tsx ***!
+  \***********************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/", function() {
-      var mod = __webpack_require__(/*! ./pages/index.tsx */ "./pages/index.tsx")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/list", function() {
+      var mod = __webpack_require__(/*! ./pages/list.tsx */ "./pages/list.tsx")
       if(true) {
-        module.hot.accept(/*! ./pages/index.tsx */ "./pages/index.tsx", function() {
-          if(!next.router.components["/"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/index.tsx */ "./pages/index.tsx")
-          next.router.update("/", updatedPage)
+        module.hot.accept(/*! ./pages/list.tsx */ "./pages/list.tsx", function() {
+          if(!next.router.components["/list"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/list.tsx */ "./pages/list.tsx")
+          next.router.update("/list", updatedPage)
         })
       }
       return mod
@@ -54965,40 +55018,98 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./pages/index.tsx":
-/*!*************************!*\
-  !*** ./pages/index.tsx ***!
-  \*************************/
+/***/ "./pages/list.tsx":
+/*!************************!*\
+  !*** ./pages/list.tsx ***!
+  \************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Container */ "./components/Container.tsx");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! isomorphic-unfetch */ "./node_modules/next/dist/build/polyfills/fetch/index.js");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Container */ "./components/Container.tsx");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var _material_ui_icons_Check__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/icons/Check */ "./node_modules/@material-ui/icons/Check.js");
+/* harmony import */ var _material_ui_icons_Check__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Check__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_6__);
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  return __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_1__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Typography"], {
-    children: "Home page",
+
+
+
+
+var Index = function Index(_ref) {
+  var shows = _ref.shows;
+  return __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_3__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Typography"], {
+    children: "Batman TV Shows",
     variant: "h6"
-  }));
-});
+  }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["List"], null, shows.map(function (show) {
+    return __jsx(next_link__WEBPACK_IMPORTED_MODULE_6___default.a, {
+      key: show.id,
+      href: "/list/[id]",
+      as: "/list/".concat(show.id)
+    }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["ListItem"], {
+      button: true
+    }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["ListItemIcon"], {
+      children: __jsx(_material_ui_icons_Check__WEBPACK_IMPORTED_MODULE_5___default.a, null)
+    }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["ListItemText"], {
+      primary: show.name
+    })));
+  })));
+};
+
+Index.getInitialProps = function _callee() {
+  var res, data;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_2___default()("https://api.tvmaze.com/search/shows?q=batman"));
+
+        case 2:
+          res = _context.sent;
+          _context.next = 5;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(res.json());
+
+        case 5:
+          data = _context.sent;
+          return _context.abrupt("return", {
+            shows: data.map(function (entry) {
+              return entry.show;
+            })
+          });
+
+        case 7:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, null, null, null, Promise);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Index);
 
 /***/ }),
 
-/***/ 4:
-/*!************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cindex.tsx ***!
-  \************************************************************************************************************************************/
+/***/ 6:
+/*!***************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Flist&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Clist.tsx ***!
+  \***************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cindex.tsx! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cindex.tsx!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Flist&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Clist.tsx! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Flist&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Clist.tsx!./");
 
 
 /***/ }),
@@ -55014,5 +55125,5 @@ module.exports = dll_2adc2403d89adc16ead0;
 
 /***/ })
 
-},[[4,"static/runtime/webpack.js"]]]);
-//# sourceMappingURL=index.js.map
+},[[6,"static/runtime/webpack.js"]]]);
+//# sourceMappingURL=list.js.map

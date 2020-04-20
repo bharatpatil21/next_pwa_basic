@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2417,56 +2417,71 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./pages/home.js":
-/*!***********************!*\
-  !*** ./pages/home.js ***!
-  \***********************/
-/*! exports provided: default, getServerSideProps */
+/***/ "./pages/list.tsx":
+/*!************************!*\
+  !*** ./pages/list.tsx ***!
+  \************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return getServerSideProps; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Container */ "./components/Container.tsx");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! node-fetch */ "node-fetch");
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
+/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Container */ "./components/Container.tsx");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_icons_Check__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/icons/Check */ "@material-ui/icons/Check");
+/* harmony import */ var _material_ui_icons_Check__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Check__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_5__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const APP_URL = 'https://floating-plains-13859.herokuapp.com';
-const LOCALHOST = 'http://localhost:3000';
-/* harmony default export */ __webpack_exports__["default"] = (({
-  todos
-}) => __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_1__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Typography"], {
-  children: "Home page",
+
+
+
+const Index = ({
+  shows
+}) => __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_2__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Typography"], {
+  children: "Batman TV Shows",
   variant: "h6"
-}), __jsx("h5", null, "Welcome page "), todos.map(todo => __jsx("h6", null, todo.name))));
-async function getServerSideProps() {
-  const resp = await node_fetch__WEBPACK_IMPORTED_MODULE_3___default()(`${APP_URL}/api/todos`);
-  const todos = await resp.json();
+}), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["List"], null, shows.map(show => __jsx(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
+  key: show.id,
+  href: "/list/[id]",
+  as: `/list/${show.id}`
+}, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["ListItem"], {
+  button: true
+}, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["ListItemIcon"], {
+  children: __jsx(_material_ui_icons_Check__WEBPACK_IMPORTED_MODULE_4___default.a, null)
+}), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["ListItemText"], {
+  primary: show.name
+}))))));
+
+Index.getInitialProps = async () => {
+  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()("https://api.tvmaze.com/search/shows?q=batman");
+  const data = await res.json();
   return {
-    props: {
-      todos
-    }
+    shows: data.map(entry => entry.show)
   };
-}
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Index);
 
 /***/ }),
 
-/***/ 4:
-/*!*****************************!*\
-  !*** multi ./pages/home.js ***!
-  \*****************************/
+/***/ 7:
+/*!******************************!*\
+  !*** multi ./pages/list.tsx ***!
+  \******************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\visha\Desktop\next_pwa_basic\pages\home.js */"./pages/home.js");
+module.exports = __webpack_require__(/*! C:\Users\visha\Desktop\next_pwa_basic\pages\list.tsx */"./pages/list.tsx");
 
 
 /***/ }),
@@ -2479,6 +2494,17 @@ module.exports = __webpack_require__(/*! C:\Users\visha\Desktop\next_pwa_basic\p
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core");
+
+/***/ }),
+
+/***/ "@material-ui/icons/Check":
+/*!*******************************************!*\
+  !*** external "@material-ui/icons/Check" ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Check");
 
 /***/ }),
 
@@ -2515,14 +2541,14 @@ module.exports = require("@material-ui/icons/Pages");
 
 /***/ }),
 
-/***/ "node-fetch":
-/*!*****************************!*\
-  !*** external "node-fetch" ***!
-  \*****************************/
+/***/ "isomorphic-unfetch":
+/*!*************************************!*\
+  !*** external "isomorphic-unfetch" ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("node-fetch");
+module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 
@@ -2571,4 +2597,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=home.js.map
+//# sourceMappingURL=list.js.map
