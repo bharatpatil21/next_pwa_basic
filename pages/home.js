@@ -13,8 +13,8 @@ export default ({todos}) => (
     </Container>
 );
 
-export async function getServerSideProps(){
-    const resp =  await fetch(`${APP_URL}/api/todos`);
+export async function getStaticProps(){
+    const resp =  await fetch(`${LOCALHOST}/api/todos`);
 
     const todos = await resp.json();
 
