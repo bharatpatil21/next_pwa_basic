@@ -8,7 +8,6 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "deploy": "next build && next export",
-    "heroku-postbuild": "next build"
   },
   "keywords": [],
   "author": "",
