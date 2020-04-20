@@ -13,7 +13,7 @@ function routes(app) {
           id:2
       }
   ]
-    res.send(JSON.stringify(todos));
+    res.send(JSON.stringify(todos)); 
   });
   
   router.get("/todos/:id", (req, res) => {
