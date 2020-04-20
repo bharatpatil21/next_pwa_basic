@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import fetch from 'node-fetch'
 
 const APP_URL = 'https://intense-brook-66021.herokuapp.com';
-const LOCALHOST = 'http://localhost:3000';
+const LOCALHOST = 'http://localhost:80';
 
 export default ({todos}) => (
     <Container>
