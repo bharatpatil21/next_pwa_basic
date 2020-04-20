@@ -2,6 +2,8 @@
 
 /* eslint-disable no-undef */
 import React, { Component } from 'react'
+import { Container } from "../components/Container";
+import { Typography } from "@material-ui/core";
 
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
@@ -1215,7 +1217,7 @@ const { DrawingManager } = require("react-google-maps/lib/components/drawing/Dra
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
 
-const DrawingManagerWrapper = compose(
+const MapClustringDrawingManagerWrapper = compose(
     withProps({
         googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}&v=3.exp&libraries=geometry,drawing,places`,
         loadingElement: <div style={{ height: `100%` }} />,
@@ -1349,24 +1351,36 @@ class BasicMap extends Component {
         this.setState({ mapDrawing: !this.state.mapDrawing });
     }
 
+    resetDrawSearch = () => {
+        this.setState({ markers: cityData })
+    }
+
 
     render() {
 
         return (
             <div>
-                <button onClick={() => this.mapDrawingHandler()}> mapDraw</button>
-                <button onClick={() => this.removePolygon()}> rem Polygon</button>
 
-                <hr />
-                <DrawingManagerWrapper
-                    mapDrawing={this.state.mapDrawing}
-                    removePolygon={this.state.removePolygon}
-                    onDrawCompleted={(res) => this.onDrawCompleted(res)}
-                    onMarkerClick={(res) => this.onMarkerClick(res)}
-                    onMarkerClustererClick={(e) => this.onMarkerClustererClick(e)}
+                <Container>
+                    <Typography children="Home page" variant="h6" />
+                    <button onClick={() => this.mapDrawingHandler()}> Reset Search Filter</button>
+                    <button onClick={() => this.mapDrawingHandler()}> Draw Polygon</button>
+                    <button onClick={() => this.removePolygon()}> Remove Polygon </button>
+                    <button onClick={() => this.resetDrawSearch()}> Reset Search Filter</button>
 
-                    markerList={this.state.markers}
-                />
+
+                    <hr />
+                    <MapClustringDrawingManagerWrapper
+                        mapDrawing={this.state.mapDrawing}
+                        removePolygon={this.state.removePolygon}
+                        onDrawCompleted={(res) => this.onDrawCompleted(res)}
+                        onMarkerClick={(res) => this.onMarkerClick(res)}
+                        onMarkerClustererClick={(e) => this.onMarkerClustererClick(e)}
+
+                        markerList={this.state.markers}
+                    />
+
+                </Container>
             </div>
         )
     }
