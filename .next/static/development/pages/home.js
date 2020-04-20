@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\notification.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\home.js"],{
 
 /***/ "./components/Container.tsx":
 /*!**********************************!*\
@@ -45952,21 +45952,21 @@ var assign=Object.assign.bind(Object);function g(){return assign;}Object.defineP
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fnotification&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cnotification.js!./":
-/*!**************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fnotification&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cnotification.js ***!
-  \**************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Chome.js!./":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Chome.js ***!
+  \**********************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-    (window.__NEXT_P=window.__NEXT_P||[]).push(["/notification", function() {
-      var mod = __webpack_require__(/*! ./pages/notification.js */ "./pages/notification.js")
+    (window.__NEXT_P=window.__NEXT_P||[]).push(["/home", function() {
+      var mod = __webpack_require__(/*! ./pages/home.js */ "./pages/home.js")
       if(true) {
-        module.hot.accept(/*! ./pages/notification.js */ "./pages/notification.js", function() {
-          if(!next.router.components["/notification"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/notification.js */ "./pages/notification.js")
-          next.router.update("/notification", updatedPage)
+        module.hot.accept(/*! ./pages/home.js */ "./pages/home.js", function() {
+          if(!next.router.components["/home"]) return
+          var updatedPage = __webpack_require__(/*! ./pages/home.js */ "./pages/home.js")
+          next.router.update("/home", updatedPage)
         })
       }
       return mod
@@ -54965,168 +54965,46 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./pages/notification.js":
-/*!*******************************!*\
-  !*** ./pages/notification.js ***!
-  \*******************************/
-/*! exports provided: default */
+/***/ "./pages/home.js":
+/*!***********************!*\
+  !*** ./pages/home.js ***!
+  \***********************/
+/*! exports provided: __N_SSP, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return notification; });
-/* harmony import */ var _babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Container */ "./components/Container.tsx");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__N_SSP", function() { return __N_SSP; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Container */ "./components/Container.tsx");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
-
-
-
-
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
-
-function _createSuper(Derived) { return function () { var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-
-
-
-var publicVapidKey = "BCj54G9kp6-MuxVje45_rEdNd24WnFaDLOquVDqrdeqGy_NwwaeTovYJoKdP429zTri6hqypw4TXKMFF6a57aMQ";
-
-function urlBase64ToUint8Array(base64String) {
-  var padding = '='.repeat((4 - base64String.length % 4) % 4);
-  var base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-  var rawData = window.atob(base64);
-  var outputArray = new Uint8Array(rawData.length);
-
-  for (var i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-
-  return outputArray;
-}
-
-var notification = /*#__PURE__*/function (_Component) {
-  Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(notification, _Component);
-
-  var _super = _createSuper(notification);
-
-  function notification(props) {
-    var _this;
-
-    Object(_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, notification);
-
-    _this = _super.call(this, props);
-
-    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "configurePushSubscription", function () {
-      _this.setState({
-        loading: true
-      });
-
-      console.log("you are inside the web notification subscription code !!");
-
-      if (!'Notification' in navigator) {
-        return;
-      }
-
-      var swRef;
-      navigator.serviceWorker.ready.then(function (sw) {
-        swRef = sw;
-        return swRef.pushManager.getSubscription(); // this allow to get the subscripition 
-      }).then(function (sub) {
-        if (sub === null) {
-          // create a new subscription 
-          console.log("we dont have the subcription");
-          return swRef.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
-          }).then(function (subscription) {
-            console.log("user is subscribed", subscription);
-          });
-        } else {
-          // we have a subscription ;
-          console.log("we have the subcription", sub);
-          return sub;
-        }
-      }).then(function (newSub) {
-        // here you have to store this newsbu i.e. your subscription user to database
-        // with the help of newSub Request payload // you get the endpoing and keys {p256dh , auth}
-        // which is used to send the notification to the user 
-        console.log("this is subsciriton body", newSub);
-        var urlDb = "https://pwa-serv-notify.herokuapp.com/api/pwa/subscribe";
-        return fetch(urlDb, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(newSub)
-        });
-      }).then(function (res) {
-        if (res.ok) {
-          console.log("new subscriber is added to DB ", res);
-          this.setState({
-            loading: false
-          });
-          var subBtn = document.getElementById("sub-notification");
-          subBtn.style.display = "none";
-        }
-      })["catch"](function (err) {
-        this.setState({
-          loading: false
-        });
-        console.log("server : App subscriber error ", err);
-      });
-    });
-
-    _this.state = {
-      isLoading: false
-    };
-    return _this;
-  }
-
-  Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(notification, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return __jsx("div", null, __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_8__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["Typography"], {
-        children: "Notification",
-        variant: "h6"
-      }), this.state.isLoading && __jsx("h3", null, "Loading..."), __jsx("h6", null, "Start Notification from server "), __jsx("button", {
-        onClick: function onClick() {
-          return _this2.configurePushSubscription();
-        }
-      }, "Start Server Notification")));
-    }
-  }]);
-
-  return notification;
-}(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
-
-
+var LOCALHOST = 'http://localhost:80';
+var __N_SSP = true;
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
+  var todos = _ref.todos;
+  return __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_1__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Typography"], {
+    children: "Home page",
+    variant: "h6"
+  }), __jsx("h5", null, "Welcome page "), todos.map(function (todo) {
+    return __jsx("h6", null, todo.name);
+  }));
+});
 
 /***/ }),
 
-/***/ 5:
-/*!******************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2Fnotification&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cnotification.js ***!
-  \******************************************************************************************************************************************************/
+/***/ 2:
+/*!**************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2Fhome&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Chome.js ***!
+  \**************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fnotification&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cnotification.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fnotification&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Cnotification.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2Fhome&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Chome.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2Fhome&absolutePagePath=C%3A%5CUsers%5Cvisha%5CDesktop%5Cnext_pwa_basic%5Cpages%5Chome.js!./");
 
 
 /***/ }),
@@ -55142,5 +55020,5 @@ module.exports = dll_e9e577f89808b21d8ba8;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js"]]]);
-//# sourceMappingURL=notification.js.map
+},[[2,"static/runtime/webpack.js"]]]);
+//# sourceMappingURL=home.js.map

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -2417,133 +2417,56 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./pages/notification.js":
-/*!*******************************!*\
-  !*** ./pages/notification.js ***!
-  \*******************************/
-/*! exports provided: default */
+/***/ "./pages/home.js":
+/*!***********************!*\
+  !*** ./pages/home.js ***!
+  \***********************/
+/*! exports provided: default, getServerSideProps */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return notification; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return getServerSideProps; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Container */ "./components/Container.tsx");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! node-fetch */ "node-fetch");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_3__);
+
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-
-
-const publicVapidKey = "BCj54G9kp6-MuxVje45_rEdNd24WnFaDLOquVDqrdeqGy_NwwaeTovYJoKdP429zTri6hqypw4TXKMFF6a57aMQ";
-
-function urlBase64ToUint8Array(base64String) {
-  var padding = '='.repeat((4 - base64String.length % 4) % 4);
-  var base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-  var rawData = window.atob(base64);
-  var outputArray = new Uint8Array(rawData.length);
-
-  for (var i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-
-  return outputArray;
-}
-
-class notification extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  constructor(props) {
-    super(props);
-
-    _defineProperty(this, "configurePushSubscription", () => {
-      this.setState({
-        loading: true
-      });
-      console.log("you are inside the web notification subscription code !!");
-
-      if (!'Notification' in navigator) {
-        return;
-      }
-
-      let swRef;
-      navigator.serviceWorker.ready.then(sw => {
-        swRef = sw;
-        return swRef.pushManager.getSubscription(); // this allow to get the subscripition 
-      }).then(sub => {
-        if (sub === null) {
-          // create a new subscription 
-          console.log("we dont have the subcription");
-          return swRef.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
-          }).then(subscription => {
-            console.log("user is subscribed", subscription);
-          });
-        } else {
-          // we have a subscription ;
-          console.log("we have the subcription", sub);
-          return sub;
-        }
-      }).then(function (newSub) {
-        // here you have to store this newsbu i.e. your subscription user to database
-        // with the help of newSub Request payload // you get the endpoing and keys {p256dh , auth}
-        // which is used to send the notification to the user 
-        console.log("this is subsciriton body", newSub);
-        let urlDb = "https://pwa-serv-notify.herokuapp.com/api/pwa/subscribe";
-        return fetch(urlDb, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(newSub)
-        });
-      }).then(function (res) {
-        if (res.ok) {
-          console.log("new subscriber is added to DB ", res);
-          this.setState({
-            loading: false
-          });
-          let subBtn = document.getElementById("sub-notification");
-          subBtn.style.display = "none";
-        }
-      }).catch(function (err) {
-        this.setState({
-          loading: false
-        });
-        console.log("server : App subscriber error ", err);
-      });
-    });
-
-    this.state = {
-      isLoading: false
-    };
-  }
-
-  render() {
-    return __jsx("div", null, __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_1__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Typography"], {
-      children: "Notification",
-      variant: "h6"
-    }), this.state.isLoading && __jsx("h3", null, "Loading..."), __jsx("h6", null, "Start Notification from server "), __jsx("button", {
-      onClick: () => this.configurePushSubscription()
-    }, "Start Server Notification")));
-  }
-
+const APP_URL = 'https://intense-brook-66021.herokuapp.com';
+const LOCALHOST = 'http://localhost:80';
+/* harmony default export */ __webpack_exports__["default"] = (({
+  todos
+}) => __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_1__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Typography"], {
+  children: "Home page",
+  variant: "h6"
+}), __jsx("h5", null, "Welcome page "), todos.map(todo => __jsx("h6", null, todo.name))));
+async function getServerSideProps() {
+  const resp = await node_fetch__WEBPACK_IMPORTED_MODULE_3___default()(`${APP_URL}/api/todos`);
+  const todos = await resp.json();
+  return {
+    props: {
+      todos
+    }
+  };
 }
 
 /***/ }),
 
-/***/ 6:
-/*!*************************************!*\
-  !*** multi ./pages/notification.js ***!
-  \*************************************/
+/***/ 3:
+/*!*****************************!*\
+  !*** multi ./pages/home.js ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\visha\Desktop\next_pwa_basic\pages\notification.js */"./pages/notification.js");
+module.exports = __webpack_require__(/*! C:\Users\visha\Desktop\next_pwa_basic\pages\home.js */"./pages/home.js");
 
 
 /***/ }),
@@ -2592,6 +2515,17 @@ module.exports = require("@material-ui/icons/Pages");
 
 /***/ }),
 
+/***/ "node-fetch":
+/*!*****************************!*\
+  !*** external "node-fetch" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("node-fetch");
+
+/***/ }),
+
 /***/ "prop-types":
 /*!*****************************!*\
   !*** external "prop-types" ***!
@@ -2637,4 +2571,4 @@ module.exports = require("url");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=notification.js.map
+//# sourceMappingURL=home.js.map
