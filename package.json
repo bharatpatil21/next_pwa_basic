@@ -5,8 +5,8 @@
   "main": "home.js",
   "scripts": {
     "dev": "next",
-    "build": "next build", 
-     "start": "next start -p $PORT",
+    "build": "next build",
+    "start": "next start -p $PORT",
     "deploy": "next build && next export"
   },
   "keywords": [],
