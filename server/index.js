@@ -9,7 +9,6 @@ const handle = app.getRequestHandler();
 app
   .prepare()
   .then(() => {
-    const port = process.env.PORT || 3000;
     const server = express();
     const port = process.env.PORT || 80;
     const showRoutes = require("./routes/index.js");
