@@ -9,6 +9,7 @@ const handle = app.getRequestHandler();
 app
   .prepare()
   .then(() => {
+    const port = process.env.PORT || 3000;
     const server = express();
     const showRoutes = require("./routes/index.js");
 
@@ -18,9 +19,9 @@ app
       return handle(req, res);
     });
 
-    server.listen(3000, err => {
+    server.listen(port, err => {
       if (err) throw err;
-      console.log(`> Ready on 3000`);
+      console.log(`> Ready on ${port}`);
     });
   })
   .catch(ex => {
