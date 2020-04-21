@@ -18,7 +18,7 @@ module.exports = withMDX(withPWA({
   //     '/':'/home'
   //   }
   // }
- // useFileSystemPublicRoutes: false,
+  // useFileSystemPublicRoutes: false,
 }))
 
 
