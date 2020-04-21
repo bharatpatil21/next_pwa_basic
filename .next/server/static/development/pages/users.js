@@ -2439,12 +2439,12 @@ if (false) {} else {
 /*!************************!*\
   !*** ./pages/users.js ***!
   \************************/
-/*! exports provided: default, getServerSideProps */
+/*! exports provided: default, getStaticProps */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return getServerSideProps; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStaticProps", function() { return getStaticProps; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Container */ "./components/Container.tsx");
@@ -2465,13 +2465,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   return __jsx(_components_Container__WEBPACK_IMPORTED_MODULE_1__["Container"], null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Typography"], {
     children: "Home page",
     variant: "h6"
-  }), __jsx("h4", null, "List of users from /api/v2/users-nosql"), __jsx("h6", null, "Data fetched with Next.js method getServerSideProps"), __jsx("ul", null, users.map(user => {
+  }), __jsx("h4", null, "List of users from /api/v2/users-nosql"), __jsx("h6", null, "Data fetched with Next.js method getStaticProps"), __jsx("ul", null, users.map(user => {
     return __jsx("li", {
       key: user.id
     }, user.name);
   })));
 });
-async function getServerSideProps(context) {
+async function getStaticProps(context) {
   const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()(`${_AppConfig__WEBPACK_IMPORTED_MODULE_4__["AppConfig"].appUrl}/api/v2/users-nosql`);
   const respData = await res.json();
   const users = respData.data.users;

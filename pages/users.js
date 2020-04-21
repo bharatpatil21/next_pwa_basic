@@ -8,7 +8,7 @@ export default function({users}) {
         <Container>
         <Typography children="Home page" variant="h6" />
         <h4>List of users from /api/v2/users-nosql</h4>
-        <h6>Data fetched with Next.js method getServerSideProps</h6>
+        <h6>Data fetched with Next.js method getStaticProps</h6>
         <ul>
             {users.map(user => {
                 return <li key={user.id}>{user.name}</li>
@@ -18,7 +18,7 @@ export default function({users}) {
     )
 }
 
-export async function getServerSideProps(context){
+export async function getStaticProps(context){
 
     const res = await fetch(`${AppConfig.appUrl}/api/v2/users-nosql`);
     const respData = await res.json();
