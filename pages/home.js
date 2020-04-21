@@ -1,27 +1,35 @@
 import { Container } from "../components/Container";
 import { Typography } from "@material-ui/core";
-import fetch from 'node-fetch'
+import fetch from "isomorphic-unfetch";
+import { AppConfig } from '../AppConfig';
+import { Component } from 'react';
+import Link from 'next/link';
 
-const APP_URL = 'https://intense-brook-66021.herokuapp.com';
-const LOCALHOST = 'http://localhost:80';
+export default class Home extends Component {
+    state = {
+        users:[]
+    }
 
-export default ({todos}) => (
-    <Container>
+    getUserList = async () => {
+        const res = await fetch(`${AppConfig.appUrl}/api/v2/users-sql`);
+        const result = await res.json();
+        this.setState({users:result.data.users});
+    }
+    
+    render(){
+        return (
+        <Container>
         <Typography children="Home page" variant="h6" />
-        <h5>Welcome page </h5>
-        {todos.map(todo => <h6>{todo.name}</h6>)}
+        <h4>List of users from /api/v2/users-sql</h4>
+        <h6>Data fetched on click with normal react syntax</h6>
+        <button onClick = {() => this.getUserList()}>Get users list</button>
+        <ul>
+        {this.state.users.map(user => {
+            return <li key={user.id}>{user.name}</li>
+        })}
+        </ul>
+        <Link href='/users'>Go to /api/v2/users-nosql</Link>
     </Container>
-);
-
-export async function getServerSideProps(){
-    const resp =  await fetch(`${APP_URL}/api/todos`);
-
-    const todos = await resp.json();
-
-
-    return {
-        props:{
-            todos,
-        }
+        );
     }
 }

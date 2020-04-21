@@ -3,7 +3,7 @@
     "user": "",
     "password": "",
     "database": "",
-    "host": "",
+    "host": "https://intense-brook-66021.herokuapp.com",
     "port": ""
   }
 }
