@@ -27,15 +27,20 @@ app
       if (err) {
         throw err;
       }
-
       _.extend(server.config, swaggerExpress.runner.config);
+
+      // Create log
+      require("./middlewares/logger").init(server);
 
       // Database connection
       require("./middlewares/dbconnect");
 
+      // Error Handler
+      require("./middlewares/error").init(server);
+
       // Install middleware
       swaggerExpress.register(server);
-
+      
       server.get("*", (req, res) => {
         return handle(req, res);
       });

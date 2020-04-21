@@ -52,6 +52,36 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /user:
+    x-swagger-router-controller: users
+    post:
+      tags:
+        - user
+      operationId: createUser
+      summary: Create user to account
+      description: Create user to account.
+      parameters:
+        - name: body
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/UserRequest'
+      responses:
+        '200':
+          description: Create user success.
+          schema:
+            allOf:
+              - $ref: "#/definitions/SuccessResponse"
+              - properties:
+                  data:
+                    type: object
+                    items:
+                      $ref: "#/definitions/UserResponse"
+        default:
+          description: An error occurred
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  
   /user/{userId}:
     x-swagger-router-controller: users
     get:
@@ -62,14 +92,51 @@ paths:
       description: Get an user details
       parameters:
         - name: userId
-          type: string
+          type: number
           required: true
           in: path
       responses:
-        "200":
-          description: Success
+        '200':
+          description: Get user details successfully
           schema:
-            $ref: "#/definitions/SuccessResponse"
+            allOf:
+              - $ref: "#/definitions/SuccessResponse"
+              - properties:
+                  data:
+                    type: object
+                    items:
+                      $ref: "#/definitions/UserResponse"
+        default:
+          description: An error occurred
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    put:
+      tags:
+        - user
+      operationId: updateUser
+      summary: Update user to account
+      description: Update user to account.
+      parameters:
+        - name: userId
+          type: number
+          required: true
+          in: path
+        - name: body
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/UserRequest'
+      responses:
+        '200':
+          description: User update success.
+          schema:
+            allOf:
+              - $ref: "#/definitions/SuccessResponse"
+              - properties:
+                  data:
+                    type: object
+                    items:
+                      $ref: "#/definitions/UserResponse"
         default:
           description: An error occurred
           schema:
@@ -119,15 +186,34 @@ definitions:
       updatedAt:
         description: User's updated at
         type: string
+  UserRequest:
+   required:
+     - name
+   properties:
+     name:
+        type: string
+        description: User's name
   SuccessResponse:
     required:
+      - statusCode
       - message
+      - data
     properties:
+      statusCode:
+        type: number
       message:
         type: string
+      data:
+        type: ["array", "object"]
   ErrorResponse:
     required:
+      - statusCode
+      - error
       - message
     properties:
+      statusCode:
+        type: number
+      error:
+        type: string
       message:
         type: string
