@@ -26,7 +26,7 @@ import PagesIcon from "@material-ui/icons/Pages";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 
-const pages = ["about", "list", "material-theme", "my-mdx", "notification","home"];
+const pages = ["about", "material-theme", "my-mdx", "notification","home","users"];
 const drawerWidth = 8 * 29;
 
 export const Container: FunctionComponent = ({ children }) => {
