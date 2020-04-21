@@ -1,14 +1,14 @@
+
 // eslint-disable no-undef comment is required to avoid google err 
 
 /* eslint-disable no-undef */
 import React, { Component } from 'react'
-import { Container } from "../components/Container";
-import { Typography } from "@material-ui/core";
 
 import { compose, withProps } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 const GOOGLE_MAP_KEY = "AIzaSyCcXjlA3bLlSEkAeMg-jdB6zIm-4gE4lQs";
+
 
 const cityData = [
     {
@@ -1217,7 +1217,7 @@ const { DrawingManager } = require("react-google-maps/lib/components/drawing/Dra
 const { MarkerClusterer } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
 
-const MapClustringDrawingManagerWrapper = compose(
+const DrawingManagerWrapper = compose(
     withProps({
         googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}&v=3.exp&libraries=geometry,drawing,places`,
         loadingElement: <div style={{ height: `100%` }} />,
@@ -1280,6 +1280,7 @@ const MapClustringDrawingManagerWrapper = compose(
                     }}
 
 
+
                 />
             })
 
@@ -1291,11 +1292,6 @@ const MapClustringDrawingManagerWrapper = compose(
     </GoogleMap>
 ));
 
-
-
-
-
-
 class BasicMap extends Component {
 
     constructor(props) {
@@ -1305,18 +1301,24 @@ class BasicMap extends Component {
             removePolygon: true,
             selectedAraaPath: null,
             filterMarkerList: null,
-            markers: cityData
+            markers: cityData,
+            poly: null
         }
     }
-
 
     onMarkerClick = (e) => {
         console.log("marker click", e);
     }
 
 
+
     removePolygon = () => {
-        this.setState({ removePolygon: !this.state.removePolygon })
+        //this.setState({ removePolygon: !this.state.removePolygon });
+        if (this.state.poly) {
+            this.state.poly.setMap(null);
+            this.setState({ poly: null });
+            this.setState({ markers: cityData });
+        }
     }
 
     onMarkerClustererClick = (e) => {
@@ -1324,14 +1326,30 @@ class BasicMap extends Component {
     }
 
     onDrawCompleted = (poly) => {
-        console.log("oncomp Draw", poly)
+        if (this.state.poly) {
+            this.state.poly.setMap(null);
+            this.setState({ poly: null });
+            this.setState({ markers: cityData });
+        }
+        this.updateMarkers(poly);
+        //Events
+        google.maps.event.addListener(poly.getPath(), 'set_at', () => this.updateMarkers(poly));
+        // google.maps.event.addListener(poly.getPath(), 'insert_at', function() {
+        //     console.log("insert called");
+        // });
+        // google.maps.event.addListener(poly.getPath(), 'remove_at', function() {
+        //     console.log("remove_at called");
+        // });
+    }
+
+    updateMarkers = (poly) => {
         const polyMarkers = [];
         const polyArray = poly.getPath().getArray();
         let paths = [];
         polyArray.forEach(function (path) {
             paths.push({ lat: path.lat(), lng: path.lng() });
         });
-        console.log("onPolygonComplete", paths);
+        console.log("OnComplete:", paths);
         var polyPoints = new google.maps.Polygon({
             paths: paths
         });
@@ -1343,6 +1361,7 @@ class BasicMap extends Component {
         });
         this.setState({ markers: polyMarkers });
         this.setState({ selectedAraaPath: paths });
+        this.setState({ poly: poly })
     }
 
 
@@ -1351,36 +1370,25 @@ class BasicMap extends Component {
         this.setState({ mapDrawing: !this.state.mapDrawing });
     }
 
-    resetDrawSearch = () => {
-        this.setState({ markers: cityData })
-    }
-
 
     render() {
-
         return (
             <div>
+                <button onClick={() => this.mapDrawingHandler()}> Draw On Map</button>
+                <button onClick={() => this.removePolygon()}> Remove Polygon</button>
+                <div>
 
-                <Container>
-                    <Typography children="Home page" variant="h6" />
-                    <button onClick={() => this.mapDrawingHandler()}> Reset Search Filter</button>
-                    <button onClick={() => this.mapDrawingHandler()}> Draw Polygon</button>
-                    <button onClick={() => this.removePolygon()}> Remove Polygon </button>
-                    <button onClick={() => this.resetDrawSearch()}> Reset Search Filter</button>
+                </div>
 
-
-                    <hr />
-                    <MapClustringDrawingManagerWrapper
-                        mapDrawing={this.state.mapDrawing}
-                        removePolygon={this.state.removePolygon}
-                        onDrawCompleted={(res) => this.onDrawCompleted(res)}
-                        onMarkerClick={(res) => this.onMarkerClick(res)}
-                        onMarkerClustererClick={(e) => this.onMarkerClustererClick(e)}
-
-                        markerList={this.state.markers}
-                    />
-
-                </Container>
+                <hr />
+                <DrawingManagerWrapper
+                    mapDrawing={this.state.mapDrawing}
+                    removePolygon={this.state.removePolygon}
+                    onDrawCompleted={(res) => this.onDrawCompleted(res)}
+                    onMarkerClick={(res) => this.onMarkerClick(res)}
+                    onMarkerClustererClick={(e) => this.onMarkerClustererClick(e)}
+                    markerList={this.state.markers}
+                />
             </div>
         )
     }
