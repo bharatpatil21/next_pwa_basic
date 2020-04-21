@@ -34,7 +34,11 @@
     "react-json-view": "^1.19.1",
     "sequelize": "^5.21.6",
     "swagger-express-mw": "^0.7.0",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "@types/node": "^13.9.0",
+    "@types/react": "^16.9.23",
+    "nodemon": "^2.0.3",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@types/node": "^13.9.0",
