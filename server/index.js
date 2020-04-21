@@ -8,10 +8,10 @@ var SwaggerExpress = require("swagger-express-mw");
 const devConfig = require("./config/dev_config.json");
 const prodConfig = require("./config/prod_config.json");
 
-const dev = process.env.NODE_ENV === "production"
-    ? _.extend(server.config, prodConfig)
-    : _.extend(server.config, devConfig);
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+const dev = process.env.NODE_ENV !== "production";
+//     ? _.extend(server.config, prodConfig)
+//     : _.extend(server.config, devConfig);
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const app = next({ dev });
 const handle = app.getRequestHandler();
