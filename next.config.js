@@ -9,9 +9,9 @@ const withMDX = require("@next/mdx")({
 module.exports = withMDX(withPWA({
   pageExtensions: ["tsx", "mdx", "js"],
   pwa: {
-    disable: false,//false
+    disable: false,
     dest: "public",
-    register: false//true
+    register: true
   },
 }))
 
