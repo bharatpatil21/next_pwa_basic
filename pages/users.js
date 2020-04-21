@@ -18,7 +18,7 @@ export default function({users}) {
     )
 }
 
-export async function getStaticProps(context){
+export async function getServerSideProps(context){
 
     const res = await fetch(`${AppConfig.appUrl}/api/v2/users-nosql`);
     const respData = await res.json();
