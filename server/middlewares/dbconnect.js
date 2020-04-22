@@ -1,9 +1,9 @@
 "use strict";
 
 const Sequelize = require("sequelize");
-
+const dbURl = "postgres://ysnayegdnjtzim:513e64ed98afb092db1ddf5fafac96d627c79d9405bc17c770742f983ac05609@ec2-52-202-22-140.compute-1.amazonaws.com:5432/d9ia70arm0m5go";
 const sequelize = new Sequelize(
-  "postgres://pbxmkeqduuylvm:e333dce140158ac19cf102842e97e7da52c6cd1d4ac3b1cb0f5be921f36bdbf9@ec2-3-223-21-106.compute-1.amazonaws.com:5432/d3j4j21qca01fs",
+  dbURl,
   {
     dialect: "postgres",
     protocol: "postgres",
