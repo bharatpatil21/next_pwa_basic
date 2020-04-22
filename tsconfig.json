@@ -23,8 +23,7 @@
   ],
   "include": [
     "next-env.d.ts",
-    "**/*.ts", 
-    "**/*.js",
-    "**/*.tsx",
+    "**/*.ts", "**/*.js",
+    "**/*.tsx", "pages/_document.js", "components/Container.js", "pages/index.js"
   ]
 }
