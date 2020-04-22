@@ -30,7 +30,7 @@ class Home extends Component {
             return <li key={user.id}>{user.name}</li>
         })}
         </ul>
-        <Link href='/users'>Go to /api/v2/users-nosql</Link>
+        <Link href='/users'><a>Go to /api/v2/users-nosql</a></Link>
         <h6>Dummy Data from Reducer</h6>
         <ul>
         {this.props.names.map(name => {

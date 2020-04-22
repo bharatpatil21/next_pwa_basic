@@ -25,7 +25,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 
 
-const pages = ["about", "material-theme", "my-mdx", "notification","home","users"];
+const pages = ["about", "material-theme", "my-mdx", "notification","home","users",'login'];
 const drawerWidth = 8 * 29;
 
 
