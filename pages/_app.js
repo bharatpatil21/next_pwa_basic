@@ -6,6 +6,8 @@ import { createStore, compose } from "redux";
 import withRedux from "next-redux-wrapper";
 import reducers from "../redux/reducers";
 
+import "../styles/global.css";
+
 //REDUX DEV TOOLS
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
