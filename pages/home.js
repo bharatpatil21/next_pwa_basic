@@ -4,8 +4,10 @@ import fetch from "isomorphic-unfetch";
 import { AppConfig } from '../AppConfig';
 import { Component } from 'react';
 import Link from 'next/link';
+import { connect } from "react-redux";
+import { getDummyData, addDummyName } from "../redux/actions";
 
-export default class Home extends Component {
+class Home extends Component {
     state = {
         users:[]
     }
@@ -29,7 +31,25 @@ export default class Home extends Component {
         })}
         </ul>
         <Link href='/users'>Go to /api/v2/users-nosql</Link>
+        <h6>Dummy Data from Reducer</h6>
+        <ul>
+        {this.props.names.map(name => {
+            return <li key={name}>{name}</li>
+        })}
+        </ul>
+
+        <button onClick={() => this.props.addDummyName('Ronil')}>Add Dummy name - Ronil</button>
     </Container>
         );
     }
 }
+
+const mapStateToProps = ({dummyData}) => {
+    const { names } = dummyData;
+
+    return {
+        names
+    }
+}
+
+export default connect(mapStateToProps,{getDummyData,addDummyName})(Home);
