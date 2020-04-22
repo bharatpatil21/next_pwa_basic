@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -12,12 +12,10 @@ import {
   Divider,
   Paper,
   makeStyles,
-  Theme,
   Hidden,
   createStyles,
   IconButton
 } from "@material-ui/core";
-
 import Link from "next/link";
 import { IsOnline } from "./IsOnline";
 import { MdxTagParse } from "./MdxTagParse";
@@ -26,10 +24,12 @@ import PagesIcon from "@material-ui/icons/Pages";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 
+
 const pages = ["about", "material-theme", "my-mdx", "notification","home","users"];
 const drawerWidth = 8 * 29;
 
-export const Container: FunctionComponent = ({ children }) => {
+
+export const Container = ({ children }) => {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -104,7 +104,7 @@ export const Container: FunctionComponent = ({ children }) => {
   );
 };
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
       display: "flex",
