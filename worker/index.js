@@ -120,9 +120,6 @@ self.addEventListener('fetch', function (event) {
 });
 
 
-
-
-
 //  read the notification from the server 
 
 self.addEventListener('push', function (e) {
