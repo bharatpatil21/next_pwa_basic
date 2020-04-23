@@ -12,7 +12,7 @@ module.exports = withMDX(withPWA({
     disable: false,
     dest: "public",
     register: true
-  }
+  },
 }))
 
 
