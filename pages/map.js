@@ -16,8 +16,6 @@ import styles from "../styles/map.module.css";
 
 const GOOGLE_MAP_KEY = "AIzaSyCcXjlA3bLlSEkAeMg-jdB6zIm-4gE4lQs";
 
-//const homeIcon = require("../../assets/img/home2.png")
-
 const cityData = [
   {
     name: "Mumbai",
@@ -1292,10 +1290,11 @@ const propertyData = [
 
 const {
   DrawingManager,
-} = require("react-google-maps/lib/components/drawing/DrawingManager");
+    } = require("react-google-maps/lib/components/drawing/DrawingManager");
+
 const {
   MarkerClusterer,
-} = require("react-google-maps/lib/components/addons/MarkerClusterer");
+    } = require("react-google-maps/lib/components/addons/MarkerClusterer");
 
 const DrawingManagerWrapper = compose(
   withProps({
@@ -1308,7 +1307,7 @@ const DrawingManagerWrapper = compose(
   withGoogleMap
 )((props) => (
   <GoogleMap
-    defaultZoom={12}
+    defaultZoom={4}
     defaultCenter={new google.maps.LatLng(18.521609, 73.854105)}
     disableDefaultUI={false}
   >
@@ -1318,7 +1317,6 @@ const DrawingManagerWrapper = compose(
         onPolygonComplete={props.onDrawCompleted}
         defaultOptions={{
           drawingControl: true,
-          // drawingMode: google.maps.drawing.OverlayType.POLYGON,
           drawingControlOptions: {
             style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
             position: google.maps.ControlPosition.TOP_CENTER,
@@ -1334,7 +1332,6 @@ const DrawingManagerWrapper = compose(
             geodesic: false,
             visible: true,
             zIndex: 1,
-            // paths: coords
           },
         }}
       />
@@ -1351,9 +1348,9 @@ const DrawingManagerWrapper = compose(
           return (
             <Marker
               onClick={() => props.onMarkerClick(this, marker)}
-              //icon={homeIcon}
+              //icon="/images/homeIcon.svg"
               key={i}
-              label={marker.name}
+              label={marker.price}
               position={{
                 lat: parseFloat(marker.lat),
                 lng: parseFloat(marker.lng),
@@ -1376,7 +1373,7 @@ class BasicMap extends Component {
       filterMarkerList: null,
       markers: propertyData,
       poly: null,
-      ClusterData:[],
+      ClusterData:propertyData,
     };
   }
 
@@ -1385,16 +1382,12 @@ class BasicMap extends Component {
     var data = [];
     data.push(marker);
     this.setState({ ClusterData: data });
-    //const clickedMarkers = e.getMarker();
-    // console.log("Marker:",clickedMarkers);
   };
 
   removePolygon = () => {
-    //this.setState({ removePolygon: !this.state.removePolygon });
     if (this.state.poly) {
       this.state.poly.setMap(null);
-      this.setState({ poly: null });
-      this.setState({ markers: propertyData });
+      this.setState({ poly: null, markers: propertyData });
     }
   };
 
@@ -1428,12 +1421,10 @@ class BasicMap extends Component {
     //     console.log("remove_at called");
     // });
   };
-  /*
-<summery>
-this method is called when polygon added on map or added polygon gets updated
-</summery>
-*/
-  updateMarkers = (poly) => {
+
+ 
+    //this method is called when polygon is added on map or added polygon is updated
+     updateMarkers = (poly) => {
     let polyMarkers = [];
     let polyArray = poly.getPath().getArray();
     let paths = [];
@@ -1455,6 +1446,7 @@ this method is called when polygon added on map or added polygon gets updated
     });
     this.setState({ 
             markers: polyMarkers,
+            ClusterData : polyMarkers,
             selectedAraaPath: paths, 
             poly: poly
          });
@@ -1464,13 +1456,17 @@ this method is called when polygon added on map or added polygon gets updated
     this.setState({ mapDrawing: !this.state.mapDrawing });
   };
 
+  getMarkerOrCluster = () => {
+      return this.state.ClusterData ? this.state.ClusterData : this.state.markers;
+  }
+
   render() {
     return (
         <Container>
           <Typography children="Map" variant="h6" />
           <div className={styles.wrapper}>
             <div className={styles.homes}>
-              {this.state.markers.map((data, i) => (
+               {this.getMarkerOrCluster().map((data, i) => (
                 <div>
                 <h3>{i + 1}</h3>
                   <img src={`${data.img}`} width="200px" height="100px" />
