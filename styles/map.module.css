@@ -1,0 +1,14 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.wrapper .homes{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    max-height: 450px;
+    overflow-y: scroll;
+    width: 250px;
+}
