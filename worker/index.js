@@ -1,16 +1,12 @@
 'use strict'
 
-const util = require('./util')
-
+// const util = require('./util')
 
 
 
 const CACHE_STATIC_NAME = 'static-v27';
 const CACHE_DYNAMIC_NAME = 'dynamic-v5';
-const staticUrlsToCache = ["/",
-    "http://localhost:3000/_next/static/runtime/amp.js",
-    " http://localhost:3000/_next/static/runtime/amp.js.map",
-    "http://localhost:3000/_next/static/runtime/main.js"];
+const staticUrlsToCache = ["/"];
 
 
 
@@ -22,7 +18,7 @@ self.addEventListener('install', function (event) {
         caches.open(CACHE_STATIC_NAME)
             .then(function (cache) {
                 console.log('[Service Worker] Precaching App Shell');
-                cache.addAll(STATIC_FILES);
+                cache.addAll(staticUrlsToCache);
             }))
 
 });
@@ -95,17 +91,16 @@ self.addEventListener('fetch', function (event) {
         event.respondWith(
             fetch(event.request)
                 .then(function (res) {
-                   
-                        return caches.open(CACHE_DYNAMIC_NAME)
+
+                    return caches.open(CACHE_DYNAMIC_NAME)
                         .then(function (cache) {
-                            if(event.request.url === "https://jsonplaceholder.typicode.com/todos" || event.request.url === "https://jsonplaceholder.typicode.com/users")
-                            {
-                                cache.put(event.request.url, res.clone());
-                            }
+
+                            cache.put(event.request.url, res.clone());
+
                             return res;   // update the cache and return the network res;
                         })
-                    
-                   
+
+
                 })
                 .catch(function (err) {
                     console.log("offline req")
@@ -171,27 +166,7 @@ self.addEventListener('push', function (e) {
 
 self.addEventListener('sync', function (event) {
     if (event.tag == 'sync-post') {
-        console.log("we have data to post online!!!");
-
-        let data = {
-            project: "OfflinePost",
-            task: "_OfflinePost_task",
-            date: "01 Apr 2020",
-            description: "post is onffline",
-            hours: "08:00",
-            userid: "001",
-            status: "pending"
-        }
-        fetch('https://pwa-serv-notify.herokuapp.com/api/pwa/timesheets/add', {
-            method: 'post',
-            body: JSON.stringify(data)
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log("posteted back to online")
-        });
-
-
+        // offline data api call after network back
     }
 });
 
