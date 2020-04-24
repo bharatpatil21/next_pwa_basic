@@ -4,7 +4,7 @@ let _ = require("lodash"),
   systemConfig = require("../config/system"),
   jwt = require("jsonwebtoken"),
   Promise = require("bluebird"),
-  CustomError = require("../lib/app_error"),
+  AppError = require("../lib/app_error"),
   loginService = require("../services/login");
 
 module.exports = {
@@ -21,7 +21,7 @@ module.exports = {
       req.token = reqToken;
     }
     if (!reqToken) {
-      cb(new CustomError({
+      cb(new AppError({
         custom_error: "unauthorized",
         message: "Un Authorized",
       }));
@@ -48,7 +48,7 @@ module.exports = {
               //     custom_error: "forbidden",
               //     message: "Forbidden",
               //   };
-              //   throw new CustomError(errObj);
+              //   throw new AppError(errObj);
               // }
               req.authUser = user;
               return;
@@ -57,7 +57,7 @@ module.exports = {
             .catch((e) => cb(e));
         })
         .catch((e) => {
-          cb(new CustomError( {
+          cb(new AppError( {
             custom_error: "unauthorized",
             message: "Un Authorized",
           }));

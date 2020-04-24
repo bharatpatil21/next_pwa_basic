@@ -1,5 +1,5 @@
 let _ = require("lodash");
-let CustomError = require("../lib/app_error");
+let AppError = require("../lib/app_error");
 const errorCodes = require('../lib/error_codes.json');
 
 module.exports = {
@@ -23,7 +23,7 @@ function init(app) {
         //log error
         _logError(req, err);
 
-        if (err instanceof CustomError && err.hasOwnProperty('custom_error')
+        if (err instanceof AppError && err.hasOwnProperty('custom_error')
             && res.boom.hasOwnProperty(err['custom_error'])) {
           res.boom[err.custom_error](err.message, {code: err.code});
         } else {
@@ -67,7 +67,7 @@ function _formatSwaggerError(err) {
 }
 
 function convertErrorToJSON(err) {
-  if (!(err instanceof CustomError || err instanceof Error || err instanceof Object ) ) {
+  if (!(err instanceof AppError || err instanceof Error || err instanceof Object ) ) {
     return err;
   }
   var formattedError = {};

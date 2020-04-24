@@ -4,7 +4,7 @@ let Promise = require("bluebird");
 let jwt = require("jsonwebtoken");
 
 let AccountModal = require("../models/Users");
-var CustomError = require("../lib/app_error");
+var AppError = require("../lib/app_error");
 
 let systemConfig = require("../config/system");
 
@@ -19,7 +19,7 @@ function authenticate(email, password, cb) {
     .then((user) => {
       if (!user) {
         cb(
-          new CustomError({
+          new AppError({
             custom_error: "notFound",
             message: "Couldn't find your account, please check Email.",
           })
@@ -29,7 +29,7 @@ function authenticate(email, password, cb) {
         let passwordHash = sha1(password + user.password_salt.trim());
         if (user.password.trim() !== passwordHash) {
           cb(
-            new CustomError({
+            new AppError({
               custom_error: "unauthorized",
               message: "Invalid credentials.",
             })
@@ -56,7 +56,7 @@ function getAuthenticatedUser(userId, cb) {
   return AccountModal.findOne({ where: { user_id: userId } }).then((user) => {
     if (!user) {
       cb(
-        new CustomError({
+        new AppError({
           custom_error: "unauthorized",
           message: "Invalid Token",
           code: "TOKEN_USER_ERROR",

@@ -2,7 +2,7 @@ let _ = require("lodash");
 let sha1 = require("sha1");
 let Promise = require("bluebird");
 
-let CustomError = require("../lib/app_error");
+let AppError = require("../lib/app_error");
 let AccountModal = require("../models/Users");
 
 let commonService = require("./common");
@@ -26,7 +26,7 @@ function createUser(data, cb) {
     (user) => {
       if (user) {
         cb(
-          new CustomError({
+          new AppError({
             custom_error: "conflict",
             message: "Email address is already in use.",
           })
@@ -44,7 +44,7 @@ function getUsers(cb) {
   return AccountModal.findAll().then((dbUsers) => {
     if (!dbUsers) {
       cb(
-        new CustomError({
+        new AppError({
           custom_error: "notFound",
           message: "Users not found.",
         })
@@ -72,7 +72,7 @@ function getUser(userId, cb) {
   return AccountModal.findOne({ where: { user_id: userId } }).then((user) => {
     if (!user) {
       cb(
-        new CustomError({
+        new AppError({
           custom_error: "notFound",
           message: "User not found.",
         })
@@ -92,7 +92,7 @@ function updateUser(userId, data, cb) {
       AccountModal.findOne({ where: { user_id: userId } }).then((user) => {
         if (!user) {
           cb(
-            new CustomError({
+            new AppError({
               custom_error: "notFound",
               message: "User not found.",
             })

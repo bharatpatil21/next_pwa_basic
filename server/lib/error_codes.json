@@ -245,7 +245,7 @@
       "messsage": "Network Authentication Required"
     }
   },
-  "customErrorCodes": {
+  "AppErrorCodes": {
     "bad_request": {
       "statusCode": 400
     },
