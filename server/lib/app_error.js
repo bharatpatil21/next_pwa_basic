@@ -1,12 +1,12 @@
-module.exports = AppError;
+'use strict';
 
-function AppError(message, extra) {
-  Error.call(this); //super constructor
+module.exports = CustomError;
+
+function CustomError(options) {
   Error.captureStackTrace(this, this.constructor);
-  this.name = 'AppError';
-  this.message = message;
-  this.extra = extra;
+  this.custom_error = options.custom_error;
+  this.message = options.message;
 };
 
 
-require('util').inherits(AppError, Error);
+require('util').inherits(CustomError, Error);

@@ -8,38 +8,47 @@ var SwaggerExpress = require("swagger-express-mw");
 const devConfig = require("./config/dev_config.json");
 const prodConfig = require("./config/prod_config.json");
 
-const dev = process.env.NODE_ENV === "production"
-// ? _.extend(server.config, prodConfig)
-// : _.extend(server.config, devConfig);
+const dev = process.env.NODE_ENV !== "production"
+const serverConfig = dev ? devConfig : prodConfig;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-const app = next({ dev });
+server.use(require('helmet')());
+server.use(require('express-boom')());
+
+const app = next({ dev, conf: serverConfig });
 const handle = app.getRequestHandler();
 
-var config = {
+var config = server.config = {
   appRoot: __dirname, // required config
 };
 
 app
   .prepare()
   .then(() => {
+    server.config['swaggerSecurityHandlers'] =  require('./middlewares/token-handler');
+
     SwaggerExpress.create(config, function (err, swaggerExpress) {
       if (err) {
+        console.log('swagger--error---',err)
         throw err;
       }
-      _.extend(server.config, swaggerExpress.runner.config);
-
+      _.assignIn(server.config, swaggerExpress.runner.config);
+      server.config.debug = app.nextConfig.serverConfig.debug;
+      server.config.logger = {
+        dir: app.nextConfig.serverConfig.logDir,
+        level: app.nextConfig.serverConfig.logLevel
+      };
       // Create log
       require("./middlewares/logger").init(server);
 
       // Database connection
       require("./middlewares/dbconnect");
 
-      // Error Handler
-      require("./middlewares/error").init(server);
-
       // Install middleware
       swaggerExpress.register(server);
+      
+      // Error Handler
+      require("./middlewares/error-handler").init(server);
 
       server.get("*", (req, res) => {
         return handle(req, res);

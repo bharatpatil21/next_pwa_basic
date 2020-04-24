@@ -1,69 +1,40 @@
-const winston = require('winston');
-require('winston-daily-rotate-file');
+let _ = require("lodash");
+let Logger = require("../shared/logger").loggerInstance;
 
 module.exports = {
-  init: init
+  init: init,
 };
 
 function init(app) {
   app.use((req, res, next) => {
-    var transport = new (winston.transports.DailyRotateFile)({
-      filename: 'logs/eternus-%DATE%.log',
-      datePattern: 'YYYY-MM-DD-HH',
-      zippedArchive: true,
-      maxSize: '20m',
-      maxFiles: '14d',
-      prepend: true
-    });
-    // Log request data and register event to log response.
-    var logger = req.logger = logger = new(winston.createLogger)({
-      transports: [
-        new(winston.transports.Console)({
-          prettyPrint: true
-        }),
-        // new (winston.transports.File)({ filename: 'somefile.log' }) // TODO: Read this from config.
-        transport
-      ]
-    });
+    try {
+      // logger = Logger(app.config.logger, app.config.debug);
+      req.logger = Logger(app.config.logger, app.config.debug);
+      // // To find request ip address
+      let ipAddress = (req.headers["x-request-ip"] =
+        req.headers["x-forwarded-for"] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress ||
+        "");
+      let ipAddresArray = _.split(ipAddress, ":");
+      // Add ip address to request
+      req.requestIP =
+        ipAddresArray.length > 1 ? ipAddresArray[2] : ipAddresArray[0];
 
-    winston.addColors({
-      silly: 'magenta',
-      debug: 'cyan',
-      info: 'green',
-      warn: 'yellow',
-      error: 'red'
-    });
-
-    logger.info({
-      requestStarted: {
-        method: req.method,
-        url: req.url,
-        headers: req.headers,
-        query: req.query,
-        body: req.body
-      }
-    });
-    res.on('close', function () {
-      logger.info({
-        requestTerminated: {
-          method: req.method,
-          url: req.url,
-          headers: req.headers,
-          query: req.query
-        }
-      });
-    });
-    res.on('finish', function () {
-      logger.info({
-        requestFinished: {
-          statusCode: res.statusCode,
-          method: req.method,
-          url: req.url,
-          headers: req.headers,
-          query: req.query
-        }
-      });
-    });
+      // TODO: Testing
+      // logger.info({
+      //   requestStarted: {
+      //     method: req.method,
+      //     url: req.url,
+      //     headers: req.headers,
+      //     query: req.query,
+      //     body: req.body,
+      //   },
+      // });
+    } catch (e) {
+      next(e);
+    }
     next();
   });
 }
