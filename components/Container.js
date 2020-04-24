@@ -20,7 +20,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 
 
-const pages = ["notification","home","users","login"];
+const pages = ["notification","home","users","login","data"];
 
 
 export const Container = ({ children }) => {
