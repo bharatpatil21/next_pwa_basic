@@ -4,6 +4,27 @@ const next = require("next");
 let _ = require("lodash");
 var SwaggerExpress = require("swagger-express-mw");
 
+var cookieParser = require('cookie-parser')
+var session = require('express-session');
+var csrf = require('csurf')
+
+var csrfProtection = csrf({ cookie: true })
+server.use(cookieParser())
+server.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
+server.use(csrf());
+server.use(function (req, res, next) {
+  let token = req.csrfToken()
+  console.log('token----',token)
+  res.cookie('XSRF-TOKEN', token);
+  res.locals.csrftoken = req.csrfToken();
+  next();
+});
+
 // ENV Config
 const devConfig = require("./config/dev_config.json");
 const prodConfig = require("./config/prod_config.json");

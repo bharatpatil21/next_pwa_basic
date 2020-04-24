@@ -14,6 +14,12 @@ function init(app) {
 
   app.use((err, req, res, next) => {
     console.log('ERROR----',err)
+
+    if (err.code !== 'EBADCSRFTOKEN') return next(err)
+    // handle CSRF token errors here
+    res.status(403)
+    res.send('form tampered with')
+
     if (req.query.i_error_trace) {
       res.boom.badRequest("Debug", { info: convertErrorToJSON(err) });
     } else {
