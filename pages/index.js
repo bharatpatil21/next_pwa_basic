@@ -327,11 +327,15 @@ class BasicMap extends Component {
   };
 
   removePolygon = () => {
-    if (this.state.poly) {
-      this.state.poly.setMap(null);
-      this.setState({ poly: null, markers: propertyData });
+    if(this.state.poly){
+        this.state.poly.setMap(null);
+        this.setState({
+            poly:null,
+            markers:propertyData,
+            ClusterData:propertyData
+        });
     }
-  };
+}
 
   onMarkerClustererClick = (e) => {
     console.log("clst", e);
