@@ -7,9 +7,6 @@ const withMDX = require("@next/mdx")({
 });
 
 module.exports = withMDX(withPWA({
-  typescript: {
-    ignoreDevErrors: true,
-  },
   pageExtensions: ["tsx", "mdx", "js"],
   pwa: {
     disable: false,
