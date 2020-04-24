@@ -1,0 +1,2 @@
+export const GET_DUMMY_DATA = 'GET_DUMMY_DATA';
+export const ADD_DUMMY_NAME = 'ADD_DUMMY_NAME';
