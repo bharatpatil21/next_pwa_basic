@@ -2,17 +2,18 @@
 
 const util = require('./util')
 
-util()
 
 
 
 const CACHE_STATIC_NAME = 'static-v27';
 const CACHE_DYNAMIC_NAME = 'dynamic-v5';
-const INDEXDB_DYNAMIC_NAME = "linkup-db";
-const STATIC_FILES = [
-    '/',
-    // '/index.html',
-];
+const staticUrlsToCache = ["/",
+    "http://localhost:3000/_next/static/runtime/amp.js",
+    " http://localhost:3000/_next/static/runtime/amp.js.map",
+    "http://localhost:3000/_next/static/runtime/main.js"];
+
+
+
 
 
 self.addEventListener('install', function (event) {
@@ -94,11 +95,17 @@ self.addEventListener('fetch', function (event) {
         event.respondWith(
             fetch(event.request)
                 .then(function (res) {
-                    return caches.open(CACHE_DYNAMIC_NAME)
+                   
+                        return caches.open(CACHE_DYNAMIC_NAME)
                         .then(function (cache) {
-                            cache.put(event.request.url, res.clone());
+                            if(event.request.url === "https://jsonplaceholder.typicode.com/todos" || event.request.url === "https://jsonplaceholder.typicode.com/users")
+                            {
+                                cache.put(event.request.url, res.clone());
+                            }
                             return res;   // update the cache and return the network res;
                         })
+                    
+                   
                 })
                 .catch(function (err) {
                     console.log("offline req")
@@ -131,13 +138,13 @@ self.addEventListener('push', function (e) {
     let payload = e.data ? JSON.parse(e.data.text()) : {
         title: "default Title for noitification",
         body: "default -server push notification body",
-      //  icon: "/images/icons/icon-96x96.png",
+        //  icon: "/images/icons/icon-96x96.png",
     };
 
     var options = {
         body: payload.body,
-      //  icon: "/images/icons/icon-96x96.png",
-       // badge: "/images/icons/icon-96x96.png",
+        //  icon: "/images/icons/icon-96x96.png",
+        // badge: "/images/icons/icon-96x96.png",
         vibrate: [100, 50, 100],
         data: {
             dateOfArrival: Date.now(),
@@ -146,11 +153,11 @@ self.addEventListener('push', function (e) {
         actions: [
             {
                 action: 'open', title: 'Explore this new world',
-             //      icon: "/images/icons/icon-96x96.png",
+                //      icon: "/images/icons/icon-96x96.png",
             },
             {
                 action: 'close', title: 'Close',
-            //icon: "/images/icons/icon-96x96.png",
+                //icon: "/images/icons/icon-96x96.png",
             },
         ]
     };
