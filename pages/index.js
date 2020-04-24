@@ -3,7 +3,6 @@
 /* eslint-disable no-undef */
 import React, { Component } from "react";
 import { Container } from "../components/Container";
-import { Typography } from "@material-ui/core";
 import { compose, withProps } from "recompose";
 import {
   withScriptjs,
@@ -83,6 +82,65 @@ const propertyData = [
     img:
       "https://imgsj.indiaproperty.com/property-images/766/6816766/t3_6816766_9911.jpeg",
   },
+  {
+    id: 1008,
+    address: "Rajkot",
+    lat: '25.731111',
+    lng: '75.5925',
+    price: "5cr",
+    img:
+      "https://imgsj.indiaproperty.com/property-images/766/6816766/t3_6816766_9911.jpeg",
+},
+{
+  id: 1009,
+    address: "Kalyan-Dombivali, Maharashtra 422003",
+    name: 'Kalyan-Dombivali',
+    state: 'Maharashtra',
+    lat: '19.235433',
+    lng: '73.129889',
+    price: "5cr",
+    img:
+      "https://imgsj.indiaproperty.com/property-images/766/6816766/t3_6816766_9911.jpeg",
+},
+{
+  id: 1010,
+    address: "Vasai-Virar, Maharashtra 422003",
+    name: 'Vasai-Virar',
+    state: 'Maharashtra',
+    lat: '19.4258788',
+    lng: '72.8224901',
+    price: "5cr",
+    img:
+      "https://imgsj.indiaproperty.com/property-images/766/6816766/t3_6816766_9911.jpeg",
+},
+{
+  id: 1011,
+  address: "Varanai, UP",
+    lat: '25.333333',
+    lng: '83',
+    price: "5cr",
+    img:
+      "https://imgsj.indiaproperty.com/property-images/766/6816766/t3_6816766_9911.jpeg",
+},
+{
+  id: 1012,
+  address: "Srinagar, J&K",
+    lat: '30.216667',
+    lng: '78.783333',
+    price: "5cr",
+    img:
+      "https://imgsj.indiaproperty.com/property-images/766/6816766/t3_6816766_9911.jpeg",
+},
+{
+  id: 1013,
+  address: "Aurangabad, Maharashtrs",
+    lat: '26.596',
+    lng: '79.9701',
+    price: "5cr",
+    img:
+      "https://imgsj.indiaproperty.com/property-images/766/6816766/t3_6816766_9911.jpeg",
+},
+
 ];
 
 const {
@@ -96,9 +154,9 @@ const {
 const DrawingManagerWrapper = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_KEY}&v=3.exp&libraries=geometry,drawing,places`,
-    loadingElement: <div style={{ height: `100%`,width:`700px` }} />,
-    containerElement: <div style={{ height: `450px`,width:`700px` }} />,
-    mapElement: <div style={{ height: `100%`,width:`700px` }} />,
+    loadingElement: <div className={styles.map}/>,
+    containerElement: <div className={styles.map} />,
+    mapElement: <div className={styles.map}/>,
   }),
   withScriptjs,
   withGoogleMap
@@ -110,6 +168,87 @@ const DrawingManagerWrapper = compose(
       new google.maps.LatLng(18.521609, 73.854105)
     }
     disableDefaultUI={false}
+    defaultOptions={{
+      styles:[
+      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+      {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+      {
+        featureType: 'administrative.locality',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+      },
+      {
+        featureType: 'poi',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+      },
+      {
+        featureType: 'poi.park',
+        elementType: 'geometry',
+        stylers: [{color: '#263c3f'}]
+      },
+      {
+        featureType: 'poi.park',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#6b9a76'}]
+      },
+      {
+        featureType: 'road',
+        elementType: 'geometry',
+        stylers: [{color: '#38414e'}]
+      },
+      {
+        featureType: 'road',
+        elementType: 'geometry.stroke',
+        stylers: [{color: '#212a37'}]
+      },
+      {
+        featureType: 'road',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#9ca5b3'}]
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'geometry',
+        stylers: [{color: '#746855'}]
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'geometry.stroke',
+        stylers: [{color: '#1f2835'}]
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#f3d19c'}]
+      },
+      {
+        featureType: 'transit',
+        elementType: 'geometry',
+        stylers: [{color: '#2f3948'}]
+      },
+      {
+        featureType: 'transit.station',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+      },
+      {
+        featureType: 'water',
+        elementType: 'geometry',
+        stylers: [{color: '#17263c'}]
+      },
+      {
+        featureType: 'water',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#515c6d'}]
+      },
+      {
+        featureType: 'water',
+        elementType: 'labels.text.stroke',
+        stylers: [{color: '#17263c'}]
+      }]
+    }}
   >
     {props.mapDrawing ? (
       <DrawingManager
@@ -146,7 +285,7 @@ const DrawingManagerWrapper = compose(
       {props.markerList &&
         props.markerList.map((marker, i) => {
           return (
-            <Marker
+            <Marker 
               onClick={() => props.onMarkerClick(this, marker)}
               //icon="/images/homeIcon.svg"
               key={i}
@@ -166,11 +305,10 @@ const DrawingManagerWrapper = compose(
 class BasicMap extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       mapDrawing: false,
       removePolygon: true,
-      selectedAraaPath: null,
+      selectedAreaPath: null,
       filterMarkerList: null,
       markers: propertyData,
       poly: null,
@@ -207,6 +345,7 @@ class BasicMap extends Component {
     this.setState({ ClusterData: data });
     console.log(this.state.ClusterData);
   };
+
 
   onDrawCompleted = (poly) => {
     if (this.state.poly) {
@@ -257,14 +396,14 @@ class BasicMap extends Component {
       }
     });
 
-    //create average lat lng of the points to set the zoom level to proper place
+    //create average lat lng of the points to set the zoom level to proper LatLng
     let latAverage = this.locationAvg(zoomLocationLats);
     let lngAverage = this.locationAvg(zoomLocationLngs);
 
     this.setState({ 
             markers: polyMarkers,
             ClusterData : polyMarkers,
-            selectedAraaPath: paths, 
+            selectedAreaPath: paths, 
             poly: poly,
             zoomMap:15,
             zoomLocationLat:latAverage,
@@ -281,6 +420,7 @@ class BasicMap extends Component {
     this.setState({ mapDrawing: !this.state.mapDrawing });
   };
 
+
   getMarkerOrCluster = () => {
       return this.state.ClusterData ? this.state.ClusterData : this.state.markers;
   }
@@ -288,11 +428,10 @@ class BasicMap extends Component {
   render() {
     return (
         <Container>
-          <Typography children="Map" variant="h6" />
           <div className={styles.wrapper}>
             <div className={styles.homes}>
                {this.getMarkerOrCluster().map((data, i) => (
-                <div>
+                <div className={styles.card}>
                 <h3>{i + 1}</h3>
                   <img src={`${data.img}`} width="200px" height="100px" />
                   <h5>{data.price}</h5>
@@ -301,14 +440,17 @@ class BasicMap extends Component {
               ))}
             </div>
             <div>
-              <button onClick={() => this.mapDrawingHandler()}>
+              <div className={styles.actionButtons}>
+              <button  className={styles.actionButton} onClick={() => this.mapDrawingHandler()}>
                 {" "}
                 Draw On Map
               </button>
-              <button onClick={() => this.removePolygon()}>
+              <button  className={styles.actionButton} onClick={() => this.removePolygon()}>
                 {" "}
                 Remove Polygon
               </button>
+              </div>
+              
               <DrawingManagerWrapper
                    mapDrawing={this.state.mapDrawing}
                    removePolygon={this.state.removePolygon}
