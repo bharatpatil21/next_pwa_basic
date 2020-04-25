@@ -1,2 +1,7 @@
 node_modules/*
 .next/*
+server/logs/*
+
+# Temp file
+public/sw.js
+public/work*
