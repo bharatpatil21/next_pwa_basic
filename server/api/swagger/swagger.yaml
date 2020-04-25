@@ -17,81 +17,31 @@ consumes:
 # format of the responses to the client (Accepts)
 produces:
   - application/json
-# Security definition
-securityDefinitions:
-    eternus_jwt_bearer:
-      type: apiKey
-      name: Authorization
-      in: header
 paths:
-  # Auth api's
-  /login/token:
-    x-swagger-router-controller: login
-    post:
-      tags:
-        - login
-      summary: Returns access token
-      description: Returns access token.
-      operationId: tokenGet
-      parameters:
-        - name: body
-          required: true
-          in: body
-          schema:
-            $ref: '#/definitions/AuthTokenRequest'
-      responses:
-        "200":
-          description: Success
-          schema:
-            allOf:
-              - $ref: "#/definitions/SuccessResponse"
-              - properties:
-                  data:
-                    type: object
-                    items:
-                      $ref: "#/definitions/AuthTokenResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-
-  # User api's
-  /user:
-    x-swagger-router-controller: users
-    post:
-      tags:
-        - user
-      operationId: userCreate
-      summary: Create a user
-      description: Create a new user to the system.
-      parameters:
-        - name: body
-          required: true
-          in: body
-          schema:
-            $ref: '#/definitions/CreateUserRequest'
-      responses:
-        '200':
-          description: Create user success.
-          schema:
-            allOf:
-              - $ref: "#/definitions/SuccessResponse"
-              - properties:
-                  data:
-                    type: object
-                    items:
-                      $ref: "#/definitions/UserResponse"
-        default:
-          description: An error occurred
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-  /users:
+  /users-nosql:
     x-swagger-router-controller: users
     get:
       tags:
         - user
-      operationId: getUsers
+      operationId: getUsersNoSql
       summary: Get list of user
+      description: Get list of user
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UserListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /users-sql:
+    x-swagger-router-controller: users
+    get:
+      tags:
+        - user
+      operationId: getUsersSql
+      summary: Get list of user with SQL Query
       description: Get list of user
       responses:
         "200":
@@ -112,53 +62,14 @@ paths:
       description: Get an user details
       parameters:
         - name: userId
-          type: number
+          type: string
           required: true
           in: path
       responses:
-        '200':
-          description: Get user details successfully
+        "200":
+          description: Success
           schema:
-            allOf:
-              - $ref: "#/definitions/SuccessResponse"
-              - properties:
-                  data:
-                    type: object
-                    items:
-                      $ref: "#/definitions/UserResponse"
-        default:
-          description: An error occurred
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-    put:
-      tags:
-        - user
-      operationId: updateUser
-      security:
-        - eternus_jwt_bearer: []
-      summary: Update user to account
-      description: Update user to account.
-      parameters:
-        - name: userId
-          type: number
-          required: true
-          in: path
-        - name: body
-          required: true
-          in: body
-          schema:
-            $ref: '#/definitions/UpdateUserRequest'
-      responses:
-        '200':
-          description: User update success.
-          schema:
-            allOf:
-              - $ref: "#/definitions/SuccessResponse"
-              - properties:
-                  data:
-                    type: object
-                    items:
-                      $ref: "#/definitions/UserResponse"
+            $ref: "#/definitions/SuccessResponse"
         default:
           description: An error occurred
           schema:
@@ -168,29 +79,6 @@ paths:
 
 # complex objects have schema definitions
 definitions:
-  CreateUserRequest:
-    required:
-      - first_name
-      - last_name
-      - email
-      - password
-    properties:
-      first_name:
-        type: string
-        pattern: ^(?=.*\w).*$
-        description: User's first name
-      last_name:
-        type: string
-        pattern: ^(?=.*\w).*$
-        description: User's last name
-      email:
-        type: string
-        format: email
-        description: User's email address
-      password:
-        type: string
-        pattern: ^(?=.*\w).*$
-        description: User's password
   UserListResponse:
     required:
       - statusCode
@@ -216,82 +104,30 @@ definitions:
               $ref: '#/definitions/UserResponse'
   UserResponse:
     properties:
-      first_name:
-        description: User's first name
-        type: string
-      last_name:
-        description: User's last name
-        type: string
-      username:
-        description: User's username
-        type: ["string","null"]
-      email:
-        description: User's email address
-        type: ["string","null"]
-      facebook_id:
-        description: A facebook identifier for a user
-        type: ["number", "null"]
-      google_id:
-        description: A facebook identifier for a user
-        type: ["number", "null"]
-      created_on:
-        description: User's created date
-        type: string
-  UpdateUserRequest:
-   required:
-      - first_name
-      - last_name
-   properties:
-      first_name:
-        type: string
+      id:
+        description: User's id
+        type: number
+      name:
         description: User's name
-      last_name:
         type: string
-        description: User's name
-  AuthTokenRequest:
-    required:
-      - email
-      - password
-    properties:
       email:
-        description: Email address of user.
+        description: User's emai
         type: string
-      password:
-        description: A password of user.
+      createdAt:
+        description: User's created at
         type: string
-  AuthTokenResponse:
-    required:
-      - token
-      - expires_in
-    properties:
-      token:
+      updatedAt:
+        description: User's updated at
         type: string
-        description: The token used for granting access.
-      expires_in:
-        type: integer
-        format: int64
-        description: Number of seconds before the token expires.
   SuccessResponse:
     required:
-      - statusCode
       - message
-      - data
     properties:
-      statusCode:
-        type: number
       message:
         type: string
-      data:
-        type: ["array", "object"]
   ErrorResponse:
     required:
-      - statusCode
-      - error
       - message
     properties:
-      statusCode:
-        type: number
-      error:
-        type: string
       message:
         type: string
