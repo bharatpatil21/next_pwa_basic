@@ -33,6 +33,8 @@ app
         dir: app.nextConfig.serverConfig.logDir,
         level: app.nextConfig.serverConfig.logLevel
       };
+      // Create log
+      require("./middlewares/logger").init(server);
 
       // Database connection
       require("./middlewares/dbconnect");
