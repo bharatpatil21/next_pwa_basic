@@ -167,6 +167,27 @@ paths:
           description: An error occurred
           schema:
             $ref: '#/definitions/ErrorResponse'
+
+  # Property api's
+  /properties:
+    x-swagger-router-controller: properties
+    get:
+      tags:
+        - properties
+      operationId: getProperties
+      summary: Get list of property
+      description: Get list of property
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/PropertyListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        
+          
   /swagger:
     x-swagger-pipe: swagger_raw
 
@@ -298,4 +319,56 @@ definitions:
       error:
         type: string
       message:
+        type: string
+  PropertyListResponse:
+    required:
+      - statusCode
+      - message
+      - data
+    properties:
+      statusCode:
+        type: number
+      message:
+        type: string
+      data:
+        type: object
+        required:
+          - total
+          - properties
+        properties:
+          total:
+            type: number
+            description: total item count
+          properties:
+            type: array
+            items:
+              $ref: '#/definitions/PropertyResponse'
+  PropertyResponse:
+    properties:
+      id:
+        description: Property's id
+        type: number
+      address:
+        description: Property's address
+        type: string
+      lat:
+        description: Property's lat
+        type: number
+      lng:
+        description: Property's lng
+        type: number
+      city:
+        description: Property's address
+        type: string
+      state:
+        description: Property's address
+        type: string
+      price:
+        description: Property's lat
+        type: number
+      image:
+        description: Property's address
+        type: string
+      created_on:
+        description: Property's created date
         type: string

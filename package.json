@@ -4,7 +4,7 @@
   "description": "a demo progressive web application with offline support, server side rendering, with installable option and responsiveness",
   "main": "home.js",
   "scripts": {
-    "dev": "node server/index.js",
+    "dev": "nodemon",
     "build": "next build",
     "start": "NODE_ENV=production node server/index.js",
     "deploy": "next build && next export"
