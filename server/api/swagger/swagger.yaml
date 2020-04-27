@@ -186,13 +186,61 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-        
-          
+
+  # Subscribe
+  /subscribe:
+    x-swagger-router-controller: subscribe
+    post:
+      tags:
+        - subscribe
+      operationId: addSubscribe
+      summary: Subscribe add
+      description: Subscribe created by user
+      parameters:
+        - name: body
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/SubscribeRequest'
+      responses:
+        '200':
+          description: Subscribe added success.
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        default:
+          description: An error occurred
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+       
   /swagger:
     x-swagger-pipe: swagger_raw
 
 # complex objects have schema definitions
 definitions:
+  SubscribeRequest:
+    required:
+      - endpoint
+      - expirationTime
+      - keys
+    properties:
+      endpoint:
+        type: string
+        description: subscribe end point
+      expirationTime:
+        type: ["string", "null"]
+        description: subscribe exp
+      keys:
+        type: object
+        required:
+          - p256dh
+          - auth
+        properties:
+          p256dh:
+            type: string
+            description: subscribe key
+          auth:
+            type: string
+            description: subscribe auth key
   CreateUserRequest:
     required:
       - first_name
