@@ -211,7 +211,32 @@ paths:
           description: An error occurred
           schema:
             $ref: '#/definitions/ErrorResponse'
-       
+  
+  # Push Notification
+  /push-notification:
+    x-swagger-router-controller: subscribe
+    post:
+      tags:
+        - subscribe
+      operationId: sendNotification
+      summary: Send push notification
+      description: Send push notification to subscribe user
+      parameters:
+        - name: body
+          required: true
+          in: body
+          schema:
+            $ref: '#/definitions/NotificationRequest'
+      responses:
+        '200':
+          description: Notification send success.
+          schema:
+            $ref: '#/definitions/SuccessResponse'
+        default:
+          description: An error occurred
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
   /swagger:
     x-swagger-pipe: swagger_raw
 
@@ -241,6 +266,17 @@ definitions:
           auth:
             type: string
             description: subscribe auth key
+  NotificationRequest:
+    required:
+      - title
+      - body
+    properties:
+      title:
+        type: string
+        description: Notification title
+      body:
+        type: string
+        description: Notification body
   CreateUserRequest:
     required:
       - first_name
